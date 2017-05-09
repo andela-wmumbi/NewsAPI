@@ -1,20 +1,34 @@
-const path = require('path');
-module.exports = {
-    //specifies the entry file where the bundler starts the bundling process
-    //output: specifies the location where the bundled js code is to be saved
-    //loaders: transformations that are applied on a file in our app
-    entry: './client/index.js',
+import webpack from 'webpack';
+import path from 'path';
+
+export default {
+    debug: true,
+    devtool: 'inline-source-map',
+    noInfo: false,
+    entry: [
+        'eventsource-polyfill', // necessary for hot reloading with IE
+        'webpack-hot-middleware/client?reload=true', //note that it reloads the page if hot module reloading fails.
+        path.resolve(__dirname, 'src/index')
+    ],
+    target: 'web',
     output: {
-        path: path.resolve('dist'),
-        fielanme: 'index_bundle.js'
+        path: __dirname + '/dist', // Note: Physical files are only output by the production build task `npm run build`.
+        publicPath: '/',
+        filename: 'bundle.js'
     },
+    devServer: {
+        contentBase: path.resolve(__dirname, 'src')
+    },
+    plugins: [
+        new webpack.HotModuleReplacementPlugin(),//replace modules without having to do a full brower refresh
+        new webpack.NoErrorsPlugin()//keep errors from breaking our hotreloading experieince
+    ],
     module: {
         loaders: [
-            { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
-            { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ }
+            { test: /\.js$/, include: path.join(__dirname, 'src'), loaders: ['babel'] },
+            { test: /(\.css)$/, loaders: ['style', 'css'] },
+            { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml' },
+            { test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192' }
         ]
     }
-}
-        ]
-    }
-
+};
