@@ -6,9 +6,11 @@ export default class ApiCalls extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            ids: []
+            sources: []
         };
         this.getSourceIds = this.getSourceIds.bind(this);
+        this.generateCategories = this.generateCategories.bind(this);
+        this.populateCategories = this.populateCategories.bind(this);
     }
     componentDidMount() {
         this.getSourceIds();
@@ -19,15 +21,37 @@ export default class ApiCalls extends React.Component {
         let url = source + apikey;
         request
             .get(url)
-            .then((res) => this.setState({ ids: res.body.sources }));
+            .then((res) => this.setState({ sources: res.body.sources }));
+    }
+
+    generateCategories(sources) {
+        const reduced = {};
+        for (let i = 0; i < sources.length; i++) {
+            if (!reduced[sources[i].category]) {
+                reduced[sources[i].category] = []
+            }
+        }
+        return reduced;
+    }
+
+    populateCategories(reduced, sources) {
+        for (let i = 0; i < sources.length; i++) {
+            if (sources.category === reduced[sources.category]) {
+                const sourceCategory = sources[i].category;
+                reduced[sourceCategory].push(sources[i]);
+            }
+        }
+        return reduced;
     }
     render() {
-        const sourceId = this.state.ids;
+        const sources = this.state.sources;
+        const categorised = this.generateCategories(sources);
+        const formatted = this.populateCategories(categorised, sources);
+        console.log(formatted);
         return (
             <div>
-                {sourceId.map((myid) => {
-                    let sourceNames = [myid.id];
-                    return sourceNames;
+                {sources.map((source) => {
+                    return <div> {source.category}</div>
                 })}
             </div>
         );

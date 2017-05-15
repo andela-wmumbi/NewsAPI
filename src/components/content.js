@@ -9,7 +9,7 @@ export default class ContentLister extends React.Component {
         super(props);
         this.state = {
             newsData: [],
-            ids: []
+            sourceId: this.props.sourceId
         };
 
         this.fetchData = this.fetchData.bind(this);
@@ -19,7 +19,7 @@ export default class ContentLister extends React.Component {
         this.fetchData();
     }
     fetchData() {
-        let source = 'abc-news-au';
+        let source = this.state.sourceId;
         let apikey = "213327409d384371851777e7c7f78dfe";
         let article = 'https://newsapi.org/v1/articles?';
         let url = article + 'source=' + source + '&apikey=' + apikey;
@@ -36,7 +36,7 @@ export default class ContentLister extends React.Component {
                     return <div className="article">
                         <p>Title:{article.title}</p>
                         <p>{article.description}</p>
-                        <a href={article.url}>Read More</a>
+                        <a target="_blank" href={article.url}>Read More</a>
                     </div>
                 })}
             </div>
