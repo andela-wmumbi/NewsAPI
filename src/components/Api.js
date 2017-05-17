@@ -1,6 +1,7 @@
 import React from 'react';
 import request from 'superagent';
 import ContentLister from './content.js';
+import '../../css/main.css';
 
 export default class ApiCalls extends React.Component {
     constructor(props) {
@@ -47,11 +48,28 @@ export default class ApiCalls extends React.Component {
         const sources = this.state.sources;
         const categorised = this.generateCategories(sources);
         const formatted = this.populateCategories(categorised, sources);
-        console.log(formatted);
+        //console.log(formatted);
+        let namesOfButtons = Object.keys(formatted);
+        let values = Object.values(formatted);
+       // console.log(names.keys());
+        //console.log(values);
+        const nameOfSources = values.map((value) => {
+            value.map((link)=>{
+                return link.name;
+        });
+        });
         return (
             <div>
-                {sources.map((source) => {
-                    return <div> {source.category}</div>
+                {namesOfButtons.map((source) => {
+                    return  <div className="dropdown">
+                            <button className="dropbtn">{source}</button>
+                            <div className="dropdown-content">
+                                <a href="#">Link1</a>
+                                <a href="#">Link 2</a>
+                                <a href="#">Link 3</a>
+                            </div>
+                        </div>
+
                 })}
             </div>
         );
