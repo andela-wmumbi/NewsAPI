@@ -1,11 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import NavBar from './components/menu.js';
-import ContentLister from './components/content.js';
-import ApiCalls from './components/Api.js';
-import SearchBar from './components/search.js';
-import routes from './route';
 import { Router, browserHistory } from 'react-router';
+import routes from './route';
 
 /*class Main extends Component {
     render() {
