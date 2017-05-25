@@ -23,15 +23,6 @@ app.get('*', function (req, res) {
 
 app.use('/images', express.static('images'));
 
-// app.get('/api', function (req, res) {
-//     needle.get('/givemeshit', (response) => {
-//         res.send(response);
-//     })
-// });
-// app.get('*', function (req, res) {
-//     res.sendFile(path.join(__dirname, '../src/index.html'));
-// });
-
 app.listen(port, function (err) {
     if (err) {
         console.log(err);

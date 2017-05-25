@@ -1,49 +1,73 @@
-import React, { Component } from 'react';
+import React, { PropTypes } from 'react';
 import request from 'superagent';
 
-class Articles extends Component {
+class Articles extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       articles: [],
+      url: 'http://newsapi.org/v1/articles?'
     };
-    this.getSourceArticles = this.getSourceArticles.bind(this);
+    this.getAllArticles = this.getAllArticles.bind(this);
   }
 
+/**
+ * receives ids of sources as props
+ * used to consume an articles api
+ */
   componentDidMount() {
-    this.getSourceArticles(this.props.params.source_id);
-  }
-  componentWillReceiveProps(nextProps) {
-    this.getSourceArticles(nextProps.params.source_id);
+    this.getAllArticles(this.props.params.source_id, this.state.url);
   }
 
-  getSourceArticles(sourceId) {
+  componentWillReceiveProps(nextProps) {
+    this.getAllArticles(nextProps.params.source_id, this.state.url);
+  }
+
+  getAllArticles(sourceId, url) {
     const id = sourceId;
     const apikey = '213327409d384371851777e7c7f78dfe';
-    const source = 'https://newsapi.org/v1/articles?';
-    const url = `${source}source=${id}&apiKey=${apikey}`;
+    const endpoint = `${url}source=${id}&apiKey=${apikey}`;
     request
-      .get(url)
+      .get(endpoint)
+      .then((response) => {
+        this.setState({ articles: response.body.articles });
+            console.log(this.state.articles);
+      });
+  }
+
+  getTopArticles(sourceId, url) {
+    const id = sourceId;
+    const apikey = '213327409d384371851777e7c7f78dfe';
+    const endpoint = `${url}source=${id}&sortBy=top&apiKey=${apikey}`;
+    request
+      .get(endpoint)
       .then((res) => {
         this.setState({ articles: res.body.articles });
       });
   }
 
+  getLatestArticles() {
+
+  }
+
+  // renders articles of clicked source
   render() {
+    const articles = this.state.articles;
+    console.log(articles);
     return (
-      <div>
-        {this.state.articles.map((article) => (
-          <div className="thecard">
+      <div className="content">
+        {articles.map(article => (
+          <div className="thecard" >
             <div className="card-img">
-              <img src={article.urlToImage} />
+              <img alt="article" src={article.urlToImage} />
             </div>
             <div className="card-caption">
-              <span className="date">Thursday, July 16, 2015</span>
+              <span className="date" />
               <h1>{article.title}</h1>
               <p>{article.description}</p>
             </div>
             <div className="card-outmore">
-              <a target="_blank" href={article.url}>Read more</a>
+              <a target="_blank" rel="noopener noreferrer" href={article.url}>Read more</a>
             </div>
           </div>
         ))}
@@ -51,5 +75,8 @@ class Articles extends Component {
     );
   }
 }
+Articles.propTypes = {
+  params: PropTypes.object.isRequired,
+};
 
 export default Articles;

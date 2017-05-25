@@ -6,13 +6,29 @@
   "author": "andela-wmumbi <winnie.mumbi@andela.com>",
   "license": "MIT",
   "scripts": {
-    "start": "npm-run-all --parallel test:watch open:src lint:watch",
+    "start": "npm-run-all --parallel open:src lint:watch",
     "open:src": "babel-node tools/srcServer.js",
     "lint": "node_modules/.bin/esw webpack.config.* src tools",
     "lint:watch": "npm run lint -- --watch",
-    "test": "mocha --reporter progress tools/testSetup.js \"tests/*.test.js\"",
-    "test:watch": "npm run test -- --watch",
+    "test": "jest",
+    "coveralls": "./node_modules/.bin/coveralls > coverage/lcov.info",
+    "test:watch": "jest --watch",
     "build:dist": "react-build-dist"
+  },
+  "jest": {
+    "rootDir": "./",
+    "moduleNameMapper": {
+      "^.+\\.(css|scss)$": "identity-obj-proxy"
+    },
+    "transform": {
+      ".*": "<rootDir>/node_modules/babel-jest"
+    },
+    "collectCoverage": true,
+    "coverageDirectory": "<rootDir>/coverage",
+    "verbose": true,
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/node_modules/"
+    ]
   },
   "dependencies": {
     "babel-core": "^6.24.1",
@@ -26,6 +42,7 @@
     "react": "15.0.2",
     "react-dom": "15.0.2",
     "react-google-login": "^2.8.9",
+    "react-google-login-component": "^0.7.0",
     "react-router": "2.4.0",
     "superagent": "^3.5.2",
     "toastr": "2.1.2"
@@ -42,12 +59,14 @@
     "cheerio": "0.22.0",
     "colors": "1.1.2",
     "compression": "1.6.1",
+    "coveralls": "^2.13.1",
     "cross-env": "1.0.7",
     "css-loader": "0.23.1",
     "enzyme": "2.2.0",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^15.0.1",
     "eslint-config-airbnb-base": "^11.2.0",
+    "eslint-plugin-class-methods-use-this-regexp": "0.0.2",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^5.0.3",
     "eslint-plugin-react": "^7.0.1",
