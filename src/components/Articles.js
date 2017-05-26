@@ -6,15 +6,18 @@ class Articles extends React.Component {
     super(props);
     this.state = {
       articles: [],
-      url: 'http://newsapi.org/v1/articles?'
+      url: 'https://newsapi.org/v1/articles?'
     };
     this.getAllArticles = this.getAllArticles.bind(this);
+    this.getTopArticles = this.getAllArticles.bind(this);
+    this.getLatestArticles = this.getAllArticles.bind(this);
+    this.getPopularArticles = this.getAllArticles.bind(this);
   }
 
-/**
- * receives ids of sources as props
- * used to consume an articles api
- */
+  /**
+   * receives ids of sources as props
+   * used to consume an articles api
+   */
   componentDidMount() {
     this.getAllArticles(this.props.params.source_id, this.state.url);
   }
@@ -24,6 +27,7 @@ class Articles extends React.Component {
   }
 
   getAllArticles(sourceId, url) {
+
     const id = sourceId;
     const apikey = '213327409d384371851777e7c7f78dfe';
     const endpoint = `${url}source=${id}&apiKey=${apikey}`;
@@ -31,7 +35,6 @@ class Articles extends React.Component {
       .get(endpoint)
       .then((response) => {
         this.setState({ articles: response.body.articles });
-            console.log(this.state.articles);
       });
   }
 
@@ -41,21 +44,41 @@ class Articles extends React.Component {
     const endpoint = `${url}source=${id}&sortBy=top&apiKey=${apikey}`;
     request
       .get(endpoint)
-      .then((res) => {
-        this.setState({ articles: res.body.articles });
+      .then((response) => {
+        this.setState({ articles: response.body.articles });
       });
   }
 
-  getLatestArticles() {
+  getLatestArticles(sourceId, url) {
+    const id = sourceId;
+    const apikey = '213327409d384371851777e7c7f78dfe';
+    const endpoint = `${url}source=${id}&sortBy=latest&apiKey=${apikey}`;
+    request
+      .get(endpoint)
+      .then((response) => {
+        this.setState({ articles: response.body.articles });
+      });
+  }
 
+  getPopularArticles(sourceId, url) {
+    const id = sourceId;
+    const apikey = '213327409d384371851777e7c7f78dfe';
+    const endpoint = `${url}source=${id}&sortBy=popular&apiKey=${apikey}`;
+    request
+      .get(endpoint)
+      .then((response) => {
+        this.setState({ articles: response.body.articles });
+      });
   }
 
   // renders articles of clicked source
   render() {
     const articles = this.state.articles;
-    console.log(articles);
     return (
       <div className="content">
+        <div>
+          <button onClick={this.getTopArticles}>Top</button>
+        </div>
         {articles.map(article => (
           <div className="thecard" >
             <div className="card-img">

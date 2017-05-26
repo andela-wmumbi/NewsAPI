@@ -1,17 +1,17 @@
-import expect from 'expect';
-import React from 'react';
-import { shallow, mount } from 'enzyme';
-import ApiCalls from './../src/components/Api';
+// import expect from 'expect';
+// import React from 'react';
+// import { shallow, mount } from 'enzyme';
+// import NavBar from './../src/components/NavBar';
 
-describe('whether the buttons render', () => {
-   let wrapper;
-  it('should render nav buttons', () => {
-    wrapper = mount(<ApiCalls />);
-    expect(wrapper.find('.dropbtn')).toExist(true);
-  });
+// describe('whether it renders', () => {
+//   let wrapper;
+//   it('should render nav buttons', () => {
+//     wrapper = mount(<NavBar />);
+//     expect(wrapper.find('.dropbtn').length).toBe(9);
+//   });
 
-  it('should render homepage', () => {
-    wrapper = shallow(<ApiCalls />);
-    expect(wrapper.find('.navbar').length).toBe(1);
-  });
-});
+//   it('should render homepage', () => {
+//     wrapper = shallow(<NavBar />);
+//     expect(wrapper.find('.navbar').length).toBe(1);
+//   });
+// });

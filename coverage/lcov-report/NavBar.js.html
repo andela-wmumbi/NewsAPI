@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for NavBar.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="prettify.css" />
+    <link rel="stylesheet" href="base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="index.html">All files</a> NavBar.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">32.26% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>10/31</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/6</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">30% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>3/10</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">33.33% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>10/30</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
+import Login from './login';
+import SearchBar from './SearchBar';
+&nbsp;
+// es6 destructuring syntax
+class NavBar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      sources: {},
+    };
+    this.generateCategories = this.generateCategories.bind(this);
+    this.populateCategories = this.populateCategories.bind(this);
+    this.generateNames = this.generateNames.bind(this);
+  }
+&nbsp;
+  /**
+ * generateCategories()iterates through sources to retrieve categories
+ * @params retrieved sources
+ */
+  generateCategories(sources) {
+    const reduced = {};
+    for (let i = 0; i &lt; sources.length; i++) {
+<span class="cstat-no" title="statement not covered" >      if (!reduced[sources[i].category]) {</span>
+<span class="cstat-no" title="statement not covered" >        reduced[sources[i].category] = [];</span>
+      }
+    }
+<span class="cstat-no" title="statement not covered" >    return reduced;</span>
+  }
+&nbsp;
+  /**
+   * populateCategories() returns an object with categories as keys and sources as the values
+   * takes in sources retrieved
+   */
+&nbsp;
+<span class="fstat-no" title="function not covered" >  po</span>pulateCategories(reduced, sources) {
+<span class="cstat-no" title="statement not covered" >    for (let i = 0; i &lt; sources.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >      if (sources.category === reduced[sources.category]) {</span>
+        const sourceCategory = <span class="cstat-no" title="statement not covered" >sources[i].category;</span>
+<span class="cstat-no" title="statement not covered" >        reduced[sourceCategory].push(sources[i]);</span>
+      }
+    }
+<span class="cstat-no" title="statement not covered" >    return reduced;</span>
+  }
+&nbsp;
+  /**
+   * generateNames() returns names of sources
+   * takes in sources retrieved
+   */
+<span class="fstat-no" title="function not covered" >  ge</span>nerateNames(categoryName, values) {
+    const names = <span class="cstat-no" title="statement not covered" >[];</span>
+<span class="cstat-no" title="statement not covered" >    values.map(<span class="fstat-no" title="function not covered" >(v</span>alue) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      value.map(<span class="fstat-no" title="function not covered" >(l</span>ink) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        if (categoryName === link.category) {</span>
+<span class="cstat-no" title="statement not covered" >          names.push({ name: link.name, id: link.id, sortBy: link.sortBysAvailable });</span>
+        }
+      });
+    });
+<span class="cstat-no" title="statement not covered" >    return names;</span>
+  }
+&nbsp;
+  /**
+   * renders categories as buttons
+   * renders sources to their respective categories
+   */
+  render() {
+    const sources = this.props.sources;
+    const categorised = this.generateCategories(sources);
+    const formatted = <span class="cstat-no" title="statement not covered" >this.populateCategories(categorised, sources);</span>
+    const namesOfButtons = <span class="cstat-no" title="statement not covered" >Object.keys(formatted);</span>
+    const values = <span class="cstat-no" title="statement not covered" >namesOfButtons.map(<span class="fstat-no" title="function not covered" >ke</span>y =&gt; <span class="cstat-no" title="statement not covered" >formatted[key])</span>;</span>
+<span class="cstat-no" title="statement not covered" >    return (</span>
+      &lt;div className="navbar"&gt;
+        &lt;div className="google-login"&gt; &lt;Login /&gt;&lt;/div&gt;
+        &lt;SearchBar sources={values} names={namesOfButtons} /&gt;
+        {namesOfButtons.map(<span class="fstat-no" title="function not covered" >ca</span>tegoryName =&gt; (
+<span class="cstat-no" title="statement not covered" >          &lt;div className="dropdown"&gt;</span>
+            &lt;button className="dropbtn"&gt;{categoryName}&lt;/button&gt;
+            &lt;div className="dropdown-content"&gt;
+              {this.generateNames(categoryName, values).map(<span class="fstat-no" title="function not covered" >my</span>source =&gt; <span class="cstat-no" title="statement not covered" >&lt;Link to={`/articles/${mysource.id}`}&gt;{mysource.name}&lt;/Link&gt;)</span>
+              }
+            &lt;/div&gt;
+          &lt;/div&gt;))}
+        &lt;div /&gt;
+      &lt;/div&gt;
+    );
+  }
+}
+NavBar.PropTypes = {
+  sources: PropTypes.Object
+};
+export default NavBar;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri May 26 2017 16:38:09 GMT+0300 (EAT)
+</div>
+</div>
+<script src="prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="sorter.js"></script>
+</body>
+</html>

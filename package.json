@@ -36,6 +36,7 @@
     "babel-polyfill": "6.8.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "classnames": "^2.2.5",
     "eslint-watch": "^2.1.11",
     "jquery": "2.2.3",
     "object.reduce": "^1.0.1",
@@ -44,6 +45,10 @@
     "react-google-login": "^2.8.9",
     "react-google-login-component": "^0.7.0",
     "react-router": "2.4.0",
+    "react-search-box": "0.0.6",
+    "react-select": "^1.0.0-rc.5",
+    "react-select-search": "^0.5.5",
+    "sinon": "^2.3.1",
     "superagent": "^3.5.2",
     "toastr": "2.1.2"
   },
