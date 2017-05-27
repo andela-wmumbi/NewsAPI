@@ -1,23 +1,22 @@
 import React, { PropTypes } from 'react';
 import request from 'superagent';
-import '../../css/main.css';
-import SearchBar from './SearchBar';
 import NavBar from './NavBar';
+import Header from './Header';
+import Footer from './Footer';
+import Login from './login';
+import '../../css/main.css';
 
-
-class ApiCalls extends React.Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       sources: [],
-      currentSource: '',
 
     };
-    this.getSourceIds = this.getSourceIds.bind(this);
-    this.handleSource = this.handleSource.bind(this);
+    this.getSources = this.getSources.bind(this);
   }
   componentDidMount() {
-    this.getSourceIds();
+    this.getSources();
   }
 
   /**
@@ -25,7 +24,7 @@ class ApiCalls extends React.Component {
    * stores the sources in a state
    */
 
-  getSourceIds() {
+  getSources() {
     const apikey = '213327409d384371851777e7c7f78dfe';
     const source = 'http://newsapi.org/v1/sources?apiKey=';
     const url = source + apikey;
@@ -34,22 +33,19 @@ class ApiCalls extends React.Component {
       .then(response => this.setState({ sources: response.body.sources }));
   }
 
-  handleSource(event) {
-    const hel = event.target.value;
-    this.state.sour = hel;
-  }
-
   render() {
     return (
       <div>
+        <Header />
+        <Login />
         <NavBar sources={this.state.sources} />
-
         {this.props.children}
+        <Footer />
       </div>
     );
   }
 }
-ApiCalls.propTypes = {
+App.propTypes = {
   children: PropTypes.node.isRequired
 };
-export default ApiCalls;
+export default App;

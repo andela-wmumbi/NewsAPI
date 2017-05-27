@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
-import Login from './login';
 import SearchBar from './SearchBar';
 
 let allSources = [];
@@ -53,13 +52,11 @@ class NavBar extends Component {
     const names = [];
     values.map((value) => {
       value.map((link) => {
-        // console.log(link.name);
         if (categoryName === link.category) {
           names.push({ label: link.name, value: link.id, sortBy: link.sortBysAvailable });
         }
       });
     });
-    // console.log('All sources', names);
     allSources = allSources.concat(names);
     return names;
   }
@@ -77,22 +74,22 @@ class NavBar extends Component {
     const values = namesOfButtons.map(key => formatted[key]);
     return (
       <div className="navbar">
-        <div className="google-login"> <Login /></div>
         {namesOfButtons.map(categoryName => (
           <div className="dropdown">
             <button className="dropbtn">{categoryName}</button>
             <div className="dropdown-content">
-              {this.generateNames(categoryName, values).map(mysource => <Link to={`/articles/${mysource.value}`}>{mysource.label}</Link>)
+              {this.generateNames(categoryName, values).map(mysource =>
+                <Link to={`/articles/${mysource.value}/${mysource.sortBy[0]}`}>{mysource.label}</Link>)
               }
             </div>
           </div>))}
-        <SearchBar sources={allSources} names={namesOfButtons} />
+        <div><SearchBar sources={allSources} names={namesOfButtons} /></div>
         <div />
       </div>
     );
   }
 }
-NavBar.PropTypes = {
-  sources: PropTypes.Object
+NavBar.propTypes = {
+  sources: PropTypes.object.isRequired
 };
 export default NavBar;

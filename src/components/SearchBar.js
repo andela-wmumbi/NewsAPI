@@ -19,15 +19,11 @@ class SearchBar extends Component {
 
   render() {
     const values = this.props.sources;
-    // const names = this.props.names;
-    // const ids = this.generateIds(names, values);
-    // console.log('names', values);
-
     return (
       <div>
         <Select
           name="form-field-name"
-          value={this.props.currentSource}
+          value={''}
           options={values}
           onChange={this.handleSearch}
           placeholder="Search a source"
@@ -37,7 +33,7 @@ class SearchBar extends Component {
   }
 }
 SearchBar.propTypes = {
-  values: PropTypes.Array
+  sources: PropTypes.object.isRequired
 };
 
 export default SearchBar;

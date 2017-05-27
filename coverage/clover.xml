@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1495806864666" clover="3.2.0">
-  <project timestamp="1495806864667" name="All files">
-    <metrics statements="31" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="13" coveredmethods="3" elements="44" coveredelements="12" complexity="0" loc="31" ncloc="31" packages="1" files="1" classes="1">
+<coverage generated="1495914709466" clover="3.2.0">
+  <project timestamp="1495914709466" name="All files">
+    <metrics statements="32" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="13" coveredmethods="3" elements="45" coveredelements="13" complexity="0" loc="32" ncloc="32" packages="1" files="1" classes="1">
       <file name="Articles.js" path="/Users/winnie/Documents/NewsAPI/src/components/Articles.js">
-        <metrics statements="31" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="13" coveredmethods="3"/>
+        <metrics statements="32" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="13" coveredmethods="3"/>
         <line num="6" count="2" type="stmt"/>
         <line num="7" count="2" type="stmt"/>
         <line num="11" count="2" type="stmt"/>
@@ -34,7 +34,8 @@
         <line num="69" count="0" type="stmt"/>
         <line num="75" count="2" type="stmt"/>
         <line num="76" count="2" type="stmt"/>
-        <line num="82" count="0" type="stmt"/>
+        <line num="79" count="0" type="stmt"/>
+        <line num="97" count="1" type="stmt"/>
       </file>
     </metrics>
   </project>

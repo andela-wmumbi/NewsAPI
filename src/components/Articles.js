@@ -19,18 +19,17 @@ class Articles extends React.Component {
    * used to consume an articles api
    */
   componentDidMount() {
-    this.getAllArticles(this.props.params.source_id, this.state.url);
+    this.getAllArticles(this.props.params.source_id, this.state.url, this.props.params.sortBy);
   }
 
   componentWillReceiveProps(nextProps) {
-    this.getAllArticles(nextProps.params.source_id, this.state.url);
+    this.getAllArticles(nextProps.params.source_id, this.state.url, this.props.params.sortBy);
   }
 
-  getAllArticles(sourceId, url) {
-
+  getAllArticles(sourceId, url, sortBy) {
     const id = sourceId;
     const apikey = '213327409d384371851777e7c7f78dfe';
-    const endpoint = `${url}source=${id}&apiKey=${apikey}`;
+    const endpoint = `${url}source=${id}&sortBy=${sortBy}&apiKey=${apikey}`;
     request
       .get(endpoint)
       .then((response) => {
@@ -76,9 +75,9 @@ class Articles extends React.Component {
     const articles = this.state.articles;
     return (
       <div className="content">
-        <div>
-          <button onClick={this.getTopArticles}>Top</button>
-        </div>
+        {this.props.params.sortBy === 'top' && <h3>Top Stories</h3>}
+        {this.props.params.sortBy === 'popular' && <h3>Popular Stories</h3>}
+        {this.props.params.sortBy === 'latest' && <h3>Latest Stories</h3>}
         {articles.map(article => (
           <div className="thecard" >
             <div className="card-img">
@@ -99,7 +98,7 @@ class Articles extends React.Component {
   }
 }
 Articles.propTypes = {
-  params: PropTypes.object.isRequired,
+  params: PropTypes.object.isRequired
 };
 
 export default Articles;
