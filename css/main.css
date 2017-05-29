@@ -2,19 +2,18 @@
 max-height: 100px;
 padding-bottom: 0px;
 align-self: center;
+padding-left:200px;
+background-color: #00838f;
 }
 button{
-  background-color: #00838f;
   text-transform: uppercase;
   font-size: 12px;
   border: 0;
-  float:right;
 }
-.google-login::before {
+.google-login{
   float:right;
-  position: absolute;
   color: transparent;
-  background-image: url('./../images/google.png');
+  background-image: url('./../images/google-btn.png');
   background-size: cover;
   padding-top:16px;
   padding-right:16px;
@@ -22,17 +21,12 @@ button{
 }
 #btn {
     align-items: right;
-    position: absolute;
-    right:0;
-    padding-top:5px;
-    padding-bottom:5px;
 }
 .content {
   background-color:#d9d9d9;
   text-align: center;
   padding-top: 50px;
 }
-
 .article {
     margin: auto;
     width: 60%;
@@ -42,7 +36,9 @@ button{
 }
 .search {
 	border:0px;
-	width :70%;
+	width :20%;
+  float:right;
+  padding-top:10px
 }
 
 .dropbtn {
@@ -64,6 +60,8 @@ button{
     position: relative;
     display: inline-block;
     align-self: center;
+    background-color:#00838f;
+
 }
 
 .dropdown-content {
@@ -175,4 +173,26 @@ h1 {
 
 h5 {
   margin:0;
+}
+.header {
+  width:1264px;
+  height:140px;
+  Right:1264px;
+  Bottom:40px;
+  text-align: center;
+  font-size:100px;
+  font-family: "LTC Bodoni";
+}
+.footer{
+  position: relative;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+}
+#logo{
+  font-size:100px;
+  font-family: "LTC Bodoni";
 }

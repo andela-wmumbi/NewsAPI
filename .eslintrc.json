@@ -36,6 +36,7 @@
     "no-plusplus": 0,
     "react/forbid-prop-types": 0,
     "class-methods-use-this": 0,
-    "array-callback-return": 0
+    "array-callback-return": 0,
+    "prefer-stateless-function": 0
   }
 }

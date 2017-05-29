@@ -14,7 +14,7 @@ class SearchBar extends Component {
   }
 
   handleSearch(source) {
-    browserHistory.push(`/articles/${source.value}`);
+    browserHistory.push(`/articles/${source.value}/${source.sortBy[0]}`);
   }
 
   render() {
@@ -37,4 +37,3 @@ SearchBar.propTypes = {
 };
 
 export default SearchBar;
-

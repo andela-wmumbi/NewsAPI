@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import SearchBar from './SearchBar';
+import Login from './Login';
 
 let allSources = [];
 // es6 destructuring syntax
@@ -53,7 +54,7 @@ class NavBar extends Component {
     values.map((value) => {
       value.map((link) => {
         if (categoryName === link.category) {
-          names.push({ label: link.name, value: link.id, sortBy: link.sortBysAvailable });
+          names.push({ label: link.name, value: link.id, sortBy: link.sortBysAvailable, id: link.id });
         }
       });
     });
@@ -75,15 +76,16 @@ class NavBar extends Component {
     return (
       <div className="navbar">
         {namesOfButtons.map(categoryName => (
-          <div className="dropdown">
+          <div className="dropdown" key={categoryName}>
             <button className="dropbtn">{categoryName}</button>
             <div className="dropdown-content">
-              {this.generateNames(categoryName, values).map(mysource =>
-                <Link to={`/articles/${mysource.value}/${mysource.sortBy[0]}`}>{mysource.label}</Link>)
+              {this.generateNames(categoryName, values).map((mysource) =>
+                <Link to={`/articles/${mysource.value}/${mysource.sortBy[0]}`} key={mysource.id}>{mysource.label}</Link>)
               }
             </div>
           </div>))}
-        <div><SearchBar sources={allSources} names={namesOfButtons} /></div>
+        <div className="search"><SearchBar sources={allSources} names={namesOfButtons} /></div>
+        <Login />
         <div />
       </div>
     );

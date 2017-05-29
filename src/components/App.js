@@ -3,7 +3,6 @@ import request from 'superagent';
 import NavBar from './NavBar';
 import Header from './Header';
 import Footer from './Footer';
-import Login from './login';
 import '../../css/main.css';
 
 class App extends React.Component {
@@ -16,7 +15,8 @@ class App extends React.Component {
     this.getSources = this.getSources.bind(this);
   }
   componentDidMount() {
-    this.getSources();
+    this.getSources(() => {
+    });
   }
 
   /**
@@ -24,20 +24,22 @@ class App extends React.Component {
    * stores the sources in a state
    */
 
-  getSources() {
+  getSources(callback) {
     const apikey = '213327409d384371851777e7c7f78dfe';
     const source = 'http://newsapi.org/v1/sources?apiKey=';
     const url = source + apikey;
     request
       .get(url)
-      .then(response => this.setState({ sources: response.body.sources }));
+      .then((response) => {
+        callback(response.body.sources);
+        this.setState({ sources: response.body.sources });
+      });
   }
 
   render() {
     return (
       <div>
         <Header />
-        <Login />
         <NavBar sources={this.state.sources} />
         {this.props.children}
         <Footer />
@@ -46,6 +48,10 @@ class App extends React.Component {
   }
 }
 App.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node
+};
+
+App.defaultProps = {
+  children: null,
 };
 export default App;

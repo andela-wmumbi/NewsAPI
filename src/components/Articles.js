@@ -9,9 +9,6 @@ class Articles extends React.Component {
       url: 'https://newsapi.org/v1/articles?'
     };
     this.getAllArticles = this.getAllArticles.bind(this);
-    this.getTopArticles = this.getAllArticles.bind(this);
-    this.getLatestArticles = this.getAllArticles.bind(this);
-    this.getPopularArticles = this.getAllArticles.bind(this);
   }
 
   /**
@@ -37,49 +34,17 @@ class Articles extends React.Component {
       });
   }
 
-  getTopArticles(sourceId, url) {
-    const id = sourceId;
-    const apikey = '213327409d384371851777e7c7f78dfe';
-    const endpoint = `${url}source=${id}&sortBy=top&apiKey=${apikey}`;
-    request
-      .get(endpoint)
-      .then((response) => {
-        this.setState({ articles: response.body.articles });
-      });
-  }
-
-  getLatestArticles(sourceId, url) {
-    const id = sourceId;
-    const apikey = '213327409d384371851777e7c7f78dfe';
-    const endpoint = `${url}source=${id}&sortBy=latest&apiKey=${apikey}`;
-    request
-      .get(endpoint)
-      .then((response) => {
-        this.setState({ articles: response.body.articles });
-      });
-  }
-
-  getPopularArticles(sourceId, url) {
-    const id = sourceId;
-    const apikey = '213327409d384371851777e7c7f78dfe';
-    const endpoint = `${url}source=${id}&sortBy=popular&apiKey=${apikey}`;
-    request
-      .get(endpoint)
-      .then((response) => {
-        this.setState({ articles: response.body.articles });
-      });
-  }
-
   // renders articles of clicked source
   render() {
     const articles = this.state.articles;
+
     return (
       <div className="content">
-        {this.props.params.sortBy === 'top' && <h3>Top Stories</h3>}
-        {this.props.params.sortBy === 'popular' && <h3>Popular Stories</h3>}
-        {this.props.params.sortBy === 'latest' && <h3>Latest Stories</h3>}
-        {articles.map(article => (
-          <div className="thecard" >
+        {this.props.params.sortBy === 'top' && <h4>Top Stories</h4>}
+        {this.props.params.sortBy === 'popular' && <h4>Popular Stories</h4>}
+        {this.props.params.sortBy === 'latest' && <h4>Latest Stories</h4>}
+        {articles.map((article, index) => (
+          <div className="thecard" key={index}>
             <div className="card-img">
               <img alt="article" src={article.urlToImage} />
             </div>
@@ -100,5 +65,4 @@ class Articles extends React.Component {
 Articles.propTypes = {
   params: PropTypes.object.isRequired
 };
-
 export default Articles;

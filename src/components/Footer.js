@@ -3,6 +3,6 @@ import React from 'react';
 const Footer = () => (
   <div className="footer">
     © 2017 Copyright
-  </div>
+      </div>
 );
 export default Footer;
