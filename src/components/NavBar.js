@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import SearchBar from './SearchBar';
 import Login from './Login';
+import Header from './Header';
 
 let allSources = [];
 // es6 destructuring syntax
@@ -9,8 +10,10 @@ class NavBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      filter: 'top',
       sources: {},
     };
+    this.handleChange = this.handleChange.bind(this);
     this.generateCategories = this.generateCategories.bind(this);
     this.populateCategories = this.populateCategories.bind(this);
     this.generateNames = this.generateNames.bind(this);
@@ -20,6 +23,12 @@ class NavBar extends Component {
  * generateCategories()iterates through sources to retrieve categories
  * @params retrieved sources
  */
+  handleChange(event) {
+    let array = location.pathname.split('/');
+    array = array.slice(0, array.length - 1);
+    this.setState({ filter: event.target.value });
+    window.history.pushState(this.state, '', [...array, event.target.value].join('/'));
+  }
   generateCategories(sources) {
     const reduced = {};
     for (let i = 0; i < sources.length; i++) {
@@ -54,7 +63,8 @@ class NavBar extends Component {
     values.map((value) => {
       value.map((link) => {
         if (categoryName === link.category) {
-          names.push({ label: link.name, value: link.id, sortBy: link.sortBysAvailable, id: link.id });
+          names.push(
+            { label: link.name, value: link.id, sortBy: link.sortBysAvailable, id: link.id });
         }
       });
     });
@@ -79,19 +89,25 @@ class NavBar extends Component {
           <div className="dropdown" key={categoryName}>
             <button className="dropbtn">{categoryName}</button>
             <div className="dropdown-content">
-              {this.generateNames(categoryName, values).map((mysource) =>
-                <Link to={`/articles/${mysource.value}/${mysource.sortBy[0]}`} key={mysource.id}>{mysource.label}</Link>)
+              {this.generateNames(categoryName, values).map(mysource =>
+                <Link to={`/articles/${mysource.value}/${this.state.filter}`} key={mysource.id}>{mysource.label}</Link>)
               }
             </div>
           </div>))}
+        <select value={this.state.value} onChange={this.handleChange}>
+          <option value="top">Top</option>
+          <option value="popular" >Popular</option>
+          <option value="latest">Latest</option>
+        </select>
         <div className="search"><SearchBar sources={allSources} names={namesOfButtons} /></div>
         <Login />
         <div />
-      </div>
+        <Header />
+      </div >
     );
   }
 }
 NavBar.propTypes = {
-  sources: PropTypes.object.isRequired
+  sources: PropTypes.array.isRequired
 };
 export default NavBar;

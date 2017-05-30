@@ -4,9 +4,7 @@ import sinon from 'sinon';
 import expect from 'expect';
 import SearchBar from './../src/components/SearchBar';
 
-const props = {
-  sources:
-};
+
 describe('SearchBar', () => {
   let wrapper;
   it('calls handleSearch', () => {

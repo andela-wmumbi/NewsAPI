@@ -1,16 +1,14 @@
 import React, { PropTypes } from 'react';
 import request from 'superagent';
-import NavBar from './NavBar';
-import Header from './Header';
 import Footer from './Footer';
+import NavBar from './NavBar';
 import '../../css/main.css';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sources: [],
-
+      sources: []
     };
     this.getSources = this.getSources.bind(this);
   }
@@ -39,7 +37,6 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Header />
         <NavBar sources={this.state.sources} />
         {this.props.children}
         <Footer />

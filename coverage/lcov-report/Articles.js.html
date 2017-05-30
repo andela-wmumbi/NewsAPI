@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">92.86% </span>
+        <span class="strong">88.89% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>13/14</span>
+        <span class='fraction'>16/18</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">66.67% </span>
+        <span class="strong">62.5% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>4/6</span>
+        <span class='fraction'>5/8</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">85.71% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>6/7</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">92.86% </span>
+        <span class="strong">88.89% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>13/14</span>
+        <span class='fraction'>16/18</span>
       </div>
     </div>
   </div>
@@ -111,7 +111,14 @@
 66
 67
 68
-69</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+69
+70
+71
+72
+73
+74
+75
+76</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -128,6 +135,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -141,6 +154,7 @@
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -148,10 +162,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -197,7 +211,13 @@ class Articles extends React.Component {
    * used to consume an articles api
    */
   componentDidMount() {
-    this.getAllArticles(this.props.params.source_id, this.state.url, this.props.params.sortBy);
+    let params;
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (this.props.params.source_id) {
+      params = this.props.params;
+    } else {
+<span class="cstat-no" title="statement not covered" >      params = { source_id: 'the-guardian-au', sortBy: 'top' };</span>
+    }
+    this.getAllArticles(params.source_id, this.state.url, params.sortBy);
   }
 &nbsp;
   componentWillReceiveProps(nextProps) {
@@ -205,6 +225,7 @@ class Articles extends React.Component {
   }
 &nbsp;
   getAllArticles(sourceId, url, sortBy) {
+    console.log(sortBy);
     const id = sourceId;
     const apikey = '213327409d384371851777e7c7f78dfe';
     const endpoint = `${url}source=${id}&amp;sortBy=${sortBy}&amp;apiKey=${apikey}`;
@@ -214,7 +235,6 @@ class Articles extends React.Component {
 <span class="cstat-no" title="statement not covered" >        this.setState({ articles: response.body.articles });</span>
       });
   }
-&nbsp;
   // renders articles of clicked source
   render() {
     const articles = this.state.articles;
@@ -224,6 +244,7 @@ class Articles extends React.Component {
         {this.props.params.sortBy === 'top' &amp;&amp; &lt;h4&gt;Top Stories&lt;/h4&gt;}
         {this.props.params.sortBy === 'popular' &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >&lt;h4&gt;Popular Stories&lt;/h4&gt;}</span>
         {this.props.params.sortBy === 'latest' &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >&lt;h4&gt;Latest Stories&lt;/h4&gt;}</span>
+        {/* &lt;button onClick={this.getTopArticles()}&gt;Top&lt;/button&gt;*/}
         {articles.map((article, index) =&gt; (
           &lt;div className="thecard" key={index}&gt;
             &lt;div className="card-img"&gt;
@@ -231,7 +252,7 @@ class Articles extends React.Component {
             &lt;/div&gt;
             &lt;div className="card-caption"&gt;
               &lt;span className="date" /&gt;
-              &lt;h1&gt;{article.title}&lt;/h1&gt;
+              &lt;h4&gt;{article.title}&lt;/h4&gt;
               &lt;p&gt;{article.description}&lt;/p&gt;
             &lt;/div&gt;
             &lt;div className="card-outmore"&gt;
@@ -253,7 +274,7 @@ export default Articles;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon May 29 2017 14:27:10 GMT+0300 (EAT)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue May 30 2017 20:10:52 GMT+0300 (EAT)
 </div>
 </div>
 <script src="prettify.js"></script>

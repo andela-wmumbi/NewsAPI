@@ -4,8 +4,10 @@ class Header extends React.Component {
   render() {
     return (
       <div className="header">
-        <h1 id="logo">NEWS</h1>
-      </div>
+        <a href="/">
+          <h1 id="logo">NEWS</h1>
+        </a>
+      </div >
     );
   }
 }

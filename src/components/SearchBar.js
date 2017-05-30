@@ -7,7 +7,6 @@ class SearchBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ids: [],
       sources: this.props.sources
     };
     this.handleSearch = this.handleSearch.bind(this);
@@ -18,13 +17,13 @@ class SearchBar extends Component {
   }
 
   render() {
-    const values = this.props.sources;
+    const { sources } = this.props;
     return (
       <div>
         <Select
           name="form-field-name"
           value={''}
-          options={values}
+          options={sources}
           onChange={this.handleSearch}
           placeholder="Search a source"
         />
@@ -33,7 +32,7 @@ class SearchBar extends Component {
   }
 }
 SearchBar.propTypes = {
-  sources: PropTypes.object.isRequired
+  sources: PropTypes.array.isRequired
 };
 
 export default SearchBar;
