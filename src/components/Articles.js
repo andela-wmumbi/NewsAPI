@@ -30,7 +30,6 @@ class Articles extends React.Component {
   }
 
   getAllArticles(sourceId, url, sortBy) {
-    console.log(sortBy);
     const id = sourceId;
     const apikey = '213327409d384371851777e7c7f78dfe';
     const endpoint = `${url}source=${id}&sortBy=${sortBy}&apiKey=${apikey}`;
@@ -50,8 +49,8 @@ class Articles extends React.Component {
         {this.props.params.sortBy === 'popular' && <h4>Popular Stories</h4>}
         {this.props.params.sortBy === 'latest' && <h4>Latest Stories</h4>}
         {/* <button onClick={this.getTopArticles()}>Top</button>*/}
-        {articles.map((article, index) => (
-          <div className="thecard" key={index}>
+        {articles.map(article => (
+          <div className="thecard" key={article.title}>
             <div className="card-img">
               <img alt="article" src={article.urlToImage} />
             </div>

@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import SearchBar from './SearchBar';
-import Login from './Login';
+import Login from './login';
 import Header from './Header';
 
 let allSources = [];
