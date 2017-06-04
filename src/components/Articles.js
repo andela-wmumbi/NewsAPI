@@ -5,10 +5,13 @@ class Articles extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      filter: 'top',
       articles: [],
+      sortByParams: [],
       url: 'https://newsapi.org/v1/articles?'
     };
     this.getAllArticles = this.getAllArticles.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   /**
@@ -20,7 +23,7 @@ class Articles extends React.Component {
     if (this.props.params.source_id) {
       params = this.props.params;
     } else {
-      params = { source_id: 'the-guardian-au', sortBy: 'top' };
+      params = { source_id: 'mirror', sortBy: 'top' };
     }
     this.getAllArticles(params.source_id, this.state.url, params.sortBy);
   }
@@ -30,7 +33,7 @@ class Articles extends React.Component {
   }
 
   getAllArticles(sourceId, url, sortBy) {
-    console.log(sortBy);
+    this.setState({ sortByParams: sortBy.split(',') });
     const id = sourceId;
     const apikey = '213327409d384371851777e7c7f78dfe';
     const endpoint = `${url}source=${id}&sortBy=${sortBy}&apiKey=${apikey}`;
@@ -40,18 +43,31 @@ class Articles extends React.Component {
         this.setState({ articles: response.body.articles });
       });
   }
+  handleChange(event) {
+    let array = location.pathname.split('/');
+    array = array.slice(0, array.length - 1);
+    this.setState({ filter: event.target.value });
+    window.history.pushState(this.state, '', [...array, event.target.value].join('/'));
+    window.location.reload(true);
+  }
   // renders articles of clicked source
   render() {
     const articles = this.state.articles;
 
     return (
       <div className="content">
+        <div><select value={this.state.value} onChange={this.handleChange}>
+          <option value="All">All</option>
+          {this.state.sortByParams.map(sort => (
+            <option value={sort}>{sort}</option>
+          ))}
+        </select>
+        </div>
         {this.props.params.sortBy === 'top' && <h4>Top Stories</h4>}
         {this.props.params.sortBy === 'popular' && <h4>Popular Stories</h4>}
         {this.props.params.sortBy === 'latest' && <h4>Latest Stories</h4>}
-        {/* <button onClick={this.getTopArticles()}>Top</button>*/}
-        {articles.map((article, index) => (
-          <div className="thecard" key={index}>
+        {articles.map(article => (
+          <div className="thecard" key={article.title}>
             <div className="card-img">
               <img alt="article" src={article.urlToImage} />
             </div>

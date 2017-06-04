@@ -11,7 +11,6 @@ class SearchBar extends Component {
     };
     this.handleSearch = this.handleSearch.bind(this);
   }
-
   handleSearch(source) {
     browserHistory.push(`/articles/${source.value}/${source.sortBy[0]}`);
   }
